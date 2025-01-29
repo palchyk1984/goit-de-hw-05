@@ -23,6 +23,10 @@ consumer = KafkaConsumer(
 
 producer = KafkaProducer(
     bootstrap_servers=kafka_config['bootstrap_servers'],
+    security_protocol=kafka_config['security_protocol'],
+    sasl_mechanism=kafka_config['sasl_mechanism'],
+    sasl_plain_username=kafka_config['username'],
+    sasl_plain_password=kafka_config['password'],
     value_serializer=lambda v: json.dumps(v).encode('utf-8'),
     key_serializer=lambda k: str(k).encode('utf-8')
 )
@@ -31,14 +35,15 @@ print("📡 Запущено обробку даних з датчиків...")
 
 for message in consumer:
     data = message.value
-    print(f"📥 Отримано повідомлення: {data}")  # Дебаг
+    print(f"📥 Отримано повідомлення: {data}")  # Debug
 
+    # Якщо структура не підходить — пропускаємо
     if not isinstance(data, dict):
         print(f"❌ Некоректний формат повідомлення: {data}")
         continue
 
-    if "temperature" not in data or "humidity" not in data:
-        print(f"⚠️ Відсутні очікувані ключі в повідомленні: {data}")
+    if "sensor_id" not in data or "temperature" not in data or "humidity" not in data:
+        print(f"⚠️ Відсутні ключі в повідомленні: {data}")
         continue
 
     alerts = []
@@ -60,8 +65,12 @@ for message in consumer:
         }))
 
     for topic, alert in alerts:
-        producer.send(topic, key=data["sensor_id"], value=alert)
-        print(f"⚠️ Сповіщення: {alert}")
+        try:
+            print(f"⚠️ Відправка в {topic}: {alert}")
+            producer.send(topic, key=data["sensor_id"], value=alert)
+            producer.flush()
+            print(f"✅ Успішно надіслано в {topic}")
+        except Exception as e:
+            print(f"❌ Помилка надсилання в {topic}: {e}")
 
     consumer.commit()
-
