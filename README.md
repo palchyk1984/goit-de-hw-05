@@ -38,14 +38,14 @@ python3 kafka_connection_test.py
 ``` bash
 python3 01_kafka_create_topics.py
 ```
-![Description of Image](assets/Create Kafka Topics.png)
+![Description of Image](assets/Create_Kafka_Topics.png)
 
 ❌ Reset Kafka Topics (if needed)
 
 ``` bash
 python3 delete_topics.py
 ```
-![Description of Image](assets/Reset Kafka Topics.png)
+![Description of Image](assets/Reset_Kafka_Topics.png)
 
 2️⃣ Start the Producer (Simulating Sensor Data)
 
