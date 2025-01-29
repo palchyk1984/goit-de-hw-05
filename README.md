@@ -52,17 +52,19 @@ python3 delete_topics.py
 ``` bash
 python3 02_sensor_data_producer.py
 ```
+![Description of Image](assets/Producer.png)
 
 3️⃣ Start the Data Processor (Generates Alerts)
 
 ``` bash
-python3 03_sensor_data_producer.py
+python3 03_sensor_alert_processor.py
 ```
+![Description of Image](assets/Processor.png)
 
 4️⃣ Start the Alerts Consumer
 
 ``` bash
 python3 04_alerts_consumer.py
 ```
-![Description of Image](assets/image_name.png)
+![Description of Image](assets/Consumer.png)
 
