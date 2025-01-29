@@ -22,15 +22,18 @@ A producer generates sensor data, which is processed and stored in dedicated top
 ✅ Generates alerts when threshold values are exceeded
 ✅ Listens for alerts via a consumer
 
-## Check connection with the Server 
+## 🔍 Checking the Connection with the Server
 
+Run the following command to test the Kafka connection:
 ``` bash
 python3 kafka_connection_test.py
 ```
 
-## How to run
+![Description of Image](assets/kafka_connection_test.png)
 
-1) Create Kafka topics
+## 🚀 How to Run the Project
+
+1️⃣ Create Kafka Topics
 
 ``` bash
 python3 01_kafka_create_topics.py
@@ -42,21 +45,22 @@ python3 01_kafka_create_topics.py
 python3 delete_topics.py
 ```
 
-2) 🔵 Start the producer (simulating sensor data)
+2️⃣ Start the Producer (Simulating Sensor Data)
 
 ``` bash
 python3 02_sensor_data_producer.py
 ```
 
-3) 🟢 Start the data processor (generates alerts)
+3️⃣ Start the Data Processor (Generates Alerts)
 
 ``` bash
 python3 03_sensor_data_producer.py
 ```
 
-4) 🟠 Start the alerts consumer
+4️⃣ Start the Alerts Consumer
 
 ``` bash
 python3 04_alerts_consumer.py
 ```
+![Description of Image](assets/image_name.png)
 
