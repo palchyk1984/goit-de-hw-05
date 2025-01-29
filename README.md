@@ -6,8 +6,8 @@ A producer generates sensor data, which is processed and stored in dedicated top
 ## 📦 **Project Structure**
 ```bash
 ├── kafka_config.py          # Kafka configuration (server, username, password)
-├── 02_kafka_create_topics.py   # Script to create Kafka topics
-├── 03_sensor_data_producer.py  # Producer that generates sensor data
+├── 01_kafka_create_topics.py   # Script to create Kafka topics
+├── 02_sensor_data_producer.py  # Producer that generates sensor data
 ├── 03_sensor_alert_processor.py  # Processor that analyzes sensor data and generates alerts
 ├── 04_alerts_consumer.py       # Consumer that listens for temperature and humidity alerts
 ├── kafka_connection_test.py      # Script to check connection with the Server
